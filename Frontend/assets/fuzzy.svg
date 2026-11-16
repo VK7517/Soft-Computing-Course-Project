@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250" width="100%" height="100%">
+  <defs>
+    <linearGradient id="mfLow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#EF4444" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#EF4444" stop-opacity="0.05"/>
+    </linearGradient>
+    <linearGradient id="mfMed" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#F59E0B" stop-opacity="0.05"/>
+    </linearGradient>
+    <linearGradient id="mfHigh" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#10B981" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#10B981" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="400" height="250" rx="12" fill="#0F172A"/>
+
+  <!-- Axis lines -->
+  <line x1="40" y1="200" x2="370" y2="200" stroke="#334155" stroke-width="2"/>
+  <line x1="40" y1="40" x2="40" y2="200" stroke="#334155" stroke-width="2"/>
+
+  <!-- Y-Axis Ticks -->
+  <text x="30" y="45" font-family="'Inter', sans-serif" font-size="11" fill="#94A3B8" text-anchor="end">1.0</text>
+  <text x="30" y="125" font-family="'Inter', sans-serif" font-size="11" fill="#94A3B8" text-anchor="end">0.5</text>
+  <text x="30" y="204" font-family="'Inter', sans-serif" font-size="11" fill="#94A3B8" text-anchor="end">0.0</text>
+  <line x1="36" y1="120" x2="370" y2="120" stroke="#1E293B" stroke-dasharray="4"/>
+
+  <!-- LOW Membership Curve (Red) -->
+  <path d="M 40 40 L 120 40 L 180 200 Z" fill="url(#mfLow)"/>
+  <path d="M 40 40 L 120 40 L 180 200" fill="none" stroke="#EF4444" stroke-width="3"/>
+  <text x="80" y="30" font-family="'Inter', sans-serif" font-weight="700" font-size="13" fill="#EF4444">LOW</text>
+
+  <!-- MEDIUM Membership Curve (Amber) -->
+  <path d="M 120 200 L 205 40 L 290 200 Z" fill="url(#mfMed)"/>
+  <path d="M 120 200 L 205 40 L 290 200" fill="none" stroke="#F59E0B" stroke-width="3"/>
+  <text x="205" y="30" font-family="'Inter', sans-serif" font-weight="700" font-size="13" fill="#F59E0B" text-anchor="middle">MEDIUM</text>
+
+  <!-- HIGH Membership Curve (Green) -->
+  <path d="M 230 200 L 300 40 L 370 40 Z" fill="url(#mfHigh)"/>
+  <path d="M 230 200 L 300 40 L 370 40" fill="none" stroke="#10B981" stroke-width="3"/>
+  <text x="335" y="30" font-family="'Inter', sans-serif" font-weight="700" font-size="13" fill="#10B981">HIGH</text>
+
+  <!-- X-Axis Labels -->
+  <text x="40" y="225" font-family="'Inter', sans-serif" font-size="11" fill="#94A3B8">0%</text>
+  <text x="205" y="225" font-family="'Inter', sans-serif" font-size="11" fill="#94A3B8" text-anchor="middle">50%</text>
+  <text x="370" y="225" font-family="'Inter', sans-serif" font-size="11" fill="#94A3B8" text-anchor="end">100%</text>
+
+  <text x="205" y="243" font-family="'Inter', sans-serif" font-weight="600" font-size="12" fill="#E2E8F0" text-anchor="middle">FUZZY MEMBERSHIP FUNCTIONS (μ)</text>
+</svg>

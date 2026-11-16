@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register | Intelligent Student Academic Risk System</title>
+  <meta name="description" content="Register new student profile for GA-Optimized Fuzzy Academic Risk Scoring System.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body class="auth-page">
+
+  <div class="auth-card-container animate-fade-in">
+    <!-- Left Banner -->
+    <div class="auth-banner">
+      <div class="auth-banner-header">
+        <img src="assets/logo.svg" alt="Project Logo">
+        <h1 class="auth-banner-title">Student Registration</h1>
+        <p class="auth-banner-desc">Create your authenticated student profile to calculate academic risk scores and receive tailored interventions.</p>
+      </div>
+
+      <div class="auth-banner-img-container">
+        <img src="assets/education.svg" alt="Education Analytics Illustration">
+      </div>
+
+      <div class="auth-banner-footer">
+        <p>Data Privacy: Passwords are securely hashed (PBKDF2/SHA256). Stored in <code>users.json</code>.</p>
+      </div>
+    </div>
+
+    <!-- Right Form -->
+    <div class="auth-form-wrapper">
+      <div class="auth-form-header">
+        <h2>Create Student Account</h2>
+        <p>Enter your details to initialize your fuzzy academic assessment.</p>
+      </div>
+
+      <form id="registerForm">
+        <div class="form-group">
+          <label for="regName">Full Name</label>
+          <div class="input-wrapper">
+            <input type="text" id="regName" placeholder="e.g. Alex Morgan" required autocomplete="name">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="regEmail">Academic Email Address</label>
+          <div class="input-wrapper">
+            <input type="email" id="regEmail" placeholder="alex@university.edu" required autocomplete="email">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="regPassword">Password</label>
+          <div class="input-wrapper">
+            <input type="password" id="regPassword" placeholder="Minimum 6 characters" required autocomplete="new-password">
+            <button type="button" class="toggle-password">Show</button>
+          </div>
+          <div class="password-strength-bar">
+            <div id="strengthFill" class="password-strength-fill"></div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="regConfirmPassword">Confirm Password</label>
+          <div class="input-wrapper">
+            <input type="password" id="regConfirmPassword" placeholder="Re-enter password" required autocomplete="new-password">
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary auth-submit-btn">
+          Create Account &amp; Access Dashboard
+        </button>
+      </form>
+
+      <div class="auth-form-footer">
+        <p>Already registered? <a href="login.html">Sign In Here</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+</body>
+</html>

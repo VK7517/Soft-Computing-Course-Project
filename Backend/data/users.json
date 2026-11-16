@@ -1,0 +1,76 @@
+{
+  "users": [
+    {
+      "id": "46863e86-3ffd-49fa-8360-6a70b04a0526",
+      "name": "Test Student Updated",
+      "email": "student@test.edu",
+      "password_hash": "scrypt:32768:8:1$a0nEywJ3ZReRySWv$6531ef21f95206a77f8401e60387998cbfbf1d178b4b56cb54279520ed2603b439bc47e62aea30aa08f455079a3fc56299254537087273cad768075ea585bdcb",
+      "registered_at": "2026-09-02T13:40:29.825629",
+      "profile": {
+        "student_id": "STD-72981",
+        "age": "20",
+        "college": "Faculty of Science & Technology",
+        "department": "Computer Science & Data Analytics",
+        "course": "B.Tech Data Science & Soft Computing",
+        "academic_year": "Year 3 (Sem 5)",
+        "phone": "+1 555-0198",
+        "city": "Innovation City",
+        "bio": "Passionate student focused on machine learning and soft computing algorithms."
+      }
+    },
+    {
+      "id": "d731435b-74da-40f3-a041-05d44d87bf1e",
+      "name": "Sarah Connor",
+      "email": "sarah@university.edu",
+      "password_hash": "scrypt:32768:8:1$voUvRayXJKIPpEKy$c8c6e97e7d0142dadc8f4a550fb58c58b80df51a15bda8d3c7f70caa5e10c1ee5cac8f15cd25dc425f9ad069914c938c945053e2d5c08f82c75edb12f870c999",
+      "registered_at": "2026-09-02T13:42:52.638769",
+      "profile": {
+        "student_id": "STD-76915",
+        "age": "20",
+        "college": "Faculty of Science & Technology",
+        "department": "Computer Science & Data Analytics",
+        "course": "B.Tech Data Science & Soft Computing",
+        "academic_year": "Year 3 (Sem 5)",
+        "phone": "+1 555-0198",
+        "city": "Academic City",
+        "bio": "Passionate student focused on machine learning and soft computing algorithms."
+      }
+    },
+    {
+      "id": "767623c5-ce42-459c-9fa4-b52353f8f5e0",
+      "name": "Tejas Kanade",
+      "email": "tejas.kanade24@vit.edu",
+      "password_hash": "scrypt:32768:8:1$gQOuEBFGDLypA4qg$e66a57fadbb9fbeeb0503e40ae3d17989922448b56b981c87d5d924a933ad4b7e8a6dea6c4f054d990151094b0f019289e340782dcef17f1276140ee3f3b829f",
+      "registered_at": "2026-09-02T13:44:58.297638",
+      "profile": {
+        "student_id": "STD-40375",
+        "age": "20",
+        "college": "Faculty of Science & Technology",
+        "department": "Computer Science & Data Analytics",
+        "course": "B.Tech Data Science & Soft Computing",
+        "academic_year": "Year 3 (Sem 5)",
+        "phone": "+1 555-0198",
+        "city": "Academic City",
+        "bio": "Passionate student focused on machine learning and soft computing algorithms."
+      }
+    },
+    {
+      "id": "5b684b2a-52ef-4031-874d-3bf8353da3de",
+      "name": "VK",
+      "email": "vishalkhade022@gmail.com",
+      "password_hash": "scrypt:32768:8:1$rb6cHT8AmvFZYJ5l$114e02302ff46dd6a5abf71d5f39eb7947b6db5e5dc32c3a440298f2d1fde54bf037edbfa577e39ba20b3a5ac76612509ca8a537228002f2ef541056a2fc2731",
+      "registered_at": "2026-11-15T18:16:11.326456",
+      "profile": {
+        "student_id": "STD-70186",
+        "age": "20",
+        "college": "Faculty of Science & Technology",
+        "department": "Computer Science & Data Analytics",
+        "course": "B.Tech Data Science & Soft Computing",
+        "academic_year": "Year 3 (Sem 5)",
+        "phone": "+1 555-0198",
+        "city": "Academic City",
+        "bio": "Passionate student focused on machine learning and soft computing algorithms."
+      }
+    }
+  ]
+}

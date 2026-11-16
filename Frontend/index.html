@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intelligent Academic Risk System | SDG 4 Quality Education</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    // Quick redirect based on authentication
+    fetch('/api/profile')
+      .then(res => {
+        if (res.ok) {
+          window.location.href = 'dashboard.html';
+        } else {
+          window.location.href = 'login.html';
+        }
+      })
+      .catch(() => {
+        window.location.href = 'login.html';
+      });
+  </script>
+</head>
+<body style="display: flex; align-items: center; justify-content: center; height: 100vh; background: #0F172A; color: #FFFFFF;">
+  <div style="text-align: center;">
+    <img src="assets/logo.svg" alt="Logo" style="height: 60px; margin-bottom: 1.5rem;">
+    <p style="color: #94A3B8; font-size: 1.1rem;">Redirecting to Intelligent Academic Risk Portal...</p>
+  </div>
+</body>
+</html>

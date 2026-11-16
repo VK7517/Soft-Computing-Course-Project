@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | Intelligent Student Academic Risk System</title>
+  <meta name="description" content="Dashboard for Academic Risk Scoring using Optimized Fuzzy Logic.">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  
+  <!-- Chart.js CDN for Analytics & Model Evaluation Graphs -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="dashboard-container">
+
+  <!-- ==================================================
+       SIDEBAR NAVIGATION
+       ================================================== -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <img src="assets/logo.svg" alt="Project Logo">
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-item active" data-tab="overview">
+        <span class="nav-icon">📊</span> Overview
+      </div>
+      <div class="nav-item" data-tab="assessment">
+        <span class="nav-icon">📝</span> Student Assessment
+      </div>
+      <div class="nav-item" data-tab="risk">
+        <span class="nav-icon">⚠️</span> Risk Analysis
+      </div>
+      <div class="nav-item" data-tab="factors">
+        <span class="nav-icon">⚖️</span> Factor Impact
+      </div>
+      <div class="nav-item" data-tab="recommendations">
+        <span class="nav-icon">💡</span> Recommendations
+      </div>
+      <div class="nav-item" data-tab="simulator">
+        <span class="nav-icon">🔮</span> What-if Simulator
+      </div>
+      <div class="nav-item" data-tab="fuzzy">
+        <span class="nav-icon">🧠</span> Fuzzy System
+      </div>
+      <div class="nav-item" data-tab="profile">
+        <span class="nav-icon">👤</span> Profile
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-mini-card">
+        <div class="user-avatar user-avatar-initials">S</div>
+        <div class="user-details-text">
+          <div class="name user-name-display">Student User</div>
+          <div class="email user-email-display">student@example.com</div>
+        </div>
+      </div>
+      <button onclick="performLogout()" class="btn btn-secondary" style="width:100%; margin-top:0.75rem; padding:0.4rem; font-size:0.8rem;">
+        Logout
+      </button>
+    </div>
+  </aside>
+
+  <!-- ==================================================
+       MAIN CONTENT WRAPPER
+       ================================================== -->
+  <main class="main-wrapper">
+    <!-- Top Bar -->
+    <header class="top-bar">
+      <h1 id="topBarTitle" class="top-bar-title">Overview</h1>
+      <div class="top-bar-actions">
+        <span class="badge badge-low" style="font-size:0.75rem;">GA-Optimized Engine</span>
+        <div style="font-size:0.9rem; font-weight:600;" class="user-name-display">Student</div>
+      </div>
+    </header>
+
+    <div class="content-body">
+      
+      <!-- ==================================================
+           1. OVERVIEW TAB PANE
+           ================================================== -->
+      <section id="tab-overview" class="tab-pane active">
+        <div class="grid-4 mb-6" style="margin-bottom:1.5rem;">
+          <div class="card metric-card">
+            <div class="metric-icon">🎯</div>
+            <div>
+              <div class="metric-value"><span class="risk-score-display">0.0</span>%</div>
+              <div class="metric-label">Current Academic Risk</div>
+            </div>
+          </div>
+          <div class="card metric-card">
+            <div class="metric-icon">🏷️</div>
+            <div>
+              <div class="metric-value"><span class="risk-category-badge badge badge-low">Loading</span></div>
+              <div class="metric-label">Risk Category</div>
+            </div>
+          </div>
+          <div class="card metric-card">
+            <div class="metric-icon">⚠️</div>
+            <div>
+              <div class="metric-value" id="overviewTopFactor" style="font-size:1.2rem; font-weight:700;">Loading</div>
+              <div class="metric-label">Top Risk Factor</div>
+            </div>
+          </div>
+          <div class="card metric-card">
+            <div class="metric-icon">📚</div>
+            <div>
+              <div class="metric-value" id="metricTotalStudents">12,469</div>
+              <div class="metric-label">Dataset Records Evaluated</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Actual Dataset Grade Distribution</h3>
+            </div>
+            <canvas id="chartGradeDistribution" height="200"></canvas>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Attendance vs Academic Outcome</h3>
+            </div>
+            <canvas id="chartAttendanceVsGrade" height="200"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           2. STUDENT ASSESSMENT TAB PANE
+           ================================================== -->
+      <section id="tab-assessment" class="tab-pane">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Student Academic Input Parameters</h3>
+            <span class="text-xs text-slate-500">Inputs feed into the GA-Optimized Fuzzy Logic Engine</span>
+          </div>
+
+          <form id="riskAssessmentForm" class="grid-2" style="gap:2rem;">
+            <div>
+              <div class="form-group">
+                <label>Attendance Rate (%) <span id="valAttendance" class="font-bold text-blue-600">75%</span></label>
+                <input type="range" id="inputAttendance" min="60" max="100" value="75" step="1" style="width:100%;">
+                <div class="flex justify-between text-xs text-slate-400"><span>60% (Low)</span><span>80% (Med)</span><span>100% (High)</span></div>
+              </div>
+
+              <div class="form-group">
+                <label>Weekly Study Hours <span id="valStudyHours" class="font-bold text-blue-600">18 hrs/wk</span></label>
+                <input type="range" id="inputStudyHours" min="5" max="44" value="18" step="1" style="width:100%;">
+                <div class="flex justify-between text-xs text-slate-400"><span>5 hrs</span><span>20 hrs</span><span>44 hrs</span></div>
+              </div>
+
+              <div class="form-group">
+                <label>Assignment Completion (%) <span id="valAssignment" class="font-bold text-blue-600">75%</span></label>
+                <input type="range" id="inputAssignment" min="50" max="100" value="75" step="1" style="width:100%;">
+                <div class="flex justify-between text-xs text-slate-400"><span>50%</span><span>75%</span><span>100%</span></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="form-group">
+                <label>Exam Marks Score <span id="valExamScore" class="font-bold text-blue-600">65 marks</span></label>
+                <input type="range" id="inputExamScore" min="40" max="100" value="65" step="1" style="width:100%;">
+                <div class="flex justify-between text-xs text-slate-400"><span>40 marks</span><span>70 marks</span><span>100 marks</span></div>
+              </div>
+
+              <div class="form-group">
+                <label>Stress Level <span id="valStressLevel" class="font-bold text-blue-600">1 (Medium)</span></label>
+                <input type="range" id="inputStressLevel" min="0" max="2" value="1" step="1" style="width:100%;">
+                <div class="flex justify-between text-xs text-slate-400"><span>0 (Low Stress)</span><span>1 (Medium)</span><span>2 (High Stress)</span></div>
+              </div>
+
+              <div class="form-group">
+                <label for="inputInternet">Internet Availability at Home</label>
+                <select id="inputInternet" class="form-input" style="width:100%; padding:0.6rem; border-radius:var(--radius-sm); border:1px solid var(--border-color);">
+                  <option value="1" selected>Available (1)</option>
+                  <option value="0">Unavailable (0)</option>
+                </select>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="width:100%; margin-top:1rem; padding:0.85rem;">
+                ⚡ GENERATE RISK SCORE
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           3. RISK ANALYSIS TAB PANE
+           ================================================== -->
+      <section id="tab-risk" class="tab-pane">
+        <div class="grid-2">
+          <div class="card risk-gauge-box">
+            <h3 class="card-title mb-4">Academic Risk Gauge</h3>
+            <div class="gauge-circle">
+              <div class="gauge-inner-content">
+                <div class="gauge-score-num risk-score-display">0.0</div>
+                <div class="gauge-unit">Risk Score (0–100)</div>
+              </div>
+            </div>
+            <div class="mb-2"><span class="risk-category-badge badge badge-low">Category</span></div>
+            <p id="riskExplanationText" class="text-sm text-slate-600 px-4 mt-2">Loading fuzzy inference explanation...</p>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title mb-4">Activated Fuzzy Rules</h3>
+            <div style="max-height: 320px; overflow-y: auto;">
+              <table class="custom-table">
+                <thead>
+                  <tr><th>Rule ID</th><th>Fuzzy Rule Antecedent &amp; Consequent</th><th>Firing Strength</th></tr>
+                </thead>
+                <tbody id="activatedRulesContainer">
+                  <tr><td colspan="3" class="text-slate-500">Loading activated rules...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           4. FACTOR IMPACT TAB PANE
+           ================================================== -->
+      <section id="tab-factors" class="tab-pane">
+        <div class="grid-2">
+          <div class="card">
+            <h3 class="card-title mb-4">Factor Contribution Analysis</h3>
+            <div id="factorContributionContainer">
+              <p class="text-slate-500">Loading factor analysis...</p>
+            </div>
+          </div>
+          <div class="card">
+            <h3 class="card-title mb-4">Mathematical Impact Breakdown</h3>
+            <canvas id="chartFactorImpact" height="240"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           5. RECOMMENDATIONS TAB PANE
+           ================================================== -->
+      <section id="tab-recommendations" class="tab-pane">
+        <div class="card mb-6">
+          <h3 class="card-title mb-2">Personalized Early Intervention Strategy</h3>
+          <p class="text-sm text-slate-600">Tailored action plan generated dynamically based on student fuzzy input states.</p>
+        </div>
+        <div id="recommendationsListContainer">
+          <p class="text-slate-500">Loading personalized recommendations...</p>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           6. WHAT-IF SIMULATOR TAB PANE
+           ================================================== -->
+      <section id="tab-simulator" class="tab-pane">
+        <div class="card mb-6">
+          <div class="card-header">
+            <h3 class="card-title">What-if Scenario Simulator</h3>
+            <button id="resetSimulatorBtn" class="btn btn-secondary" style="padding:0.4rem 0.8rem; font-size:0.8rem;">
+              ↺ Reset to Current Inputs
+            </button>
+          </div>
+          <p class="text-sm text-slate-600">Adjust the simulated inputs below to test how improving study hours, attendance, or exam scores recalculates academic risk in real time.</p>
+        </div>
+
+        <div class="sim-compare-grid">
+          <div class="sim-box">
+            <div class="text-xs uppercase font-bold text-slate-500 mb-1">Current Risk Score</div>
+            <div id="simCurrentScore" class="text-3xl font-extrabold text-slate-800">0.0%</div>
+          </div>
+          <div class="sim-box">
+            <div class="text-xs uppercase font-bold text-slate-500 mb-1">Simulated Projected Risk</div>
+            <div id="simProjectedScore" class="text-3xl font-extrabold text-blue-600">0.0%</div>
+            <div id="simDiffDisplay" class="mt-2 text-sm font-bold text-emerald-600">0.0%</div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h4 class="font-bold text-slate-900 mb-4">Simulated Input Parameters</h4>
+            <div class="form-group">
+              <label>Simulated Attendance: <span id="valSimAttendance" class="font-bold text-blue-600">75%</span></label>
+              <input type="range" id="simAttendance" min="60" max="100" value="75" step="1" style="width:100%;">
+            </div>
+            <div class="form-group">
+              <label>Simulated Study Hours: <span id="valSimStudyHours" class="font-bold text-blue-600">18 hrs/wk</span></label>
+              <input type="range" id="simStudyHours" min="5" max="44" value="18" step="1" style="width:100%;">
+            </div>
+            <div class="form-group">
+              <label>Simulated Assignment Completion: <span id="valSimAssignment" class="font-bold text-blue-600">75%</span></label>
+              <input type="range" id="simAssignment" min="50" max="100" value="75" step="1" style="width:100%;">
+            </div>
+            <div class="form-group">
+              <label>Simulated Exam Score: <span id="valSimExamScore" class="font-bold text-blue-600">65 marks</span></label>
+              <input type="range" id="simExamScore" min="40" max="100" value="65" step="1" style="width:100%;">
+            </div>
+            <div class="form-group">
+              <label>Simulated Stress Level: <span id="valSimStressLevel" class="font-bold text-blue-600">1 (Medium)</span></label>
+              <input type="range" id="simStressLevel" min="0" max="2" value="1" step="1" style="width:100%;">
+            </div>
+            <div class="form-group">
+              <label for="simInternet">Simulated Internet Access</label>
+              <select id="simInternet" style="width:100%; padding:0.5rem; border-radius:4px; border:1px solid #CBD5E1;">
+                <option value="1" selected>Available (1)</option>
+                <option value="0">Unavailable (0)</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <div class="card mb-4">
+              <h4 class="font-bold text-slate-900 mb-3">Factor Changes &amp; Impact</h4>
+              <div id="simFactorChangesContainer">
+                <p class="text-slate-500 text-sm">Move sliders to calculate scenario changes.</p>
+              </div>
+            </div>
+
+            <div class="card">
+              <h4 class="font-bold text-slate-900 mb-3">Updated Intervention Strategy</h4>
+              <div id="simUpdatedRecsContainer">
+                <p class="text-slate-500 text-sm">Updated recommendations will appear here.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           7. FUZZY SYSTEM TAB PANE
+           ================================================== -->
+      <section id="tab-fuzzy" class="tab-pane">
+        <div class="card mb-6">
+          <h3 class="card-title mb-2">Mamdani Fuzzy Logic Architecture</h3>
+          <p class="text-sm text-slate-600">Fuzzification (Triangular/Trapezoidal MFs) → Rule Base Evaluation (MIN antecedent aggregation) → Aggregation (MAX composition) → Defuzzification (Centroid COG).</p>
+        </div>
+
+        <div class="grid-2 mb-6">
+          <div class="card">
+            <h4 class="font-bold text-slate-900 mb-3">Fuzzy Membership Functions Illustration</h4>
+            <img src="assets/fuzzy.svg" alt="Fuzzy Curves" style="width:100%; border-radius:8px;">
+          </div>
+
+          <div class="card">
+            <h4 class="font-bold text-slate-900 mb-3">Soft Computing Pipeline</h4>
+            <div class="p-4 bg-slate-50 rounded border border-slate-200 text-sm">
+              <p class="mb-2"><strong>1. Input Fuzzification:</strong> Converts scalar input values into linguistic terms (Low, Medium, High) using membership functions $\mu(x)$.</p>
+              <p class="mb-2"><strong>2. Rule Evaluation:</strong> Computes rule firing strength $w_i = \min(\mu_{A}(x_1), \mu_{B}(x_2))$ across 30 expert rules.</p>
+              <p class="mb-2"><strong>3. Output Aggregation:</strong> Combines clipped output fuzzy sets: $\mu_{out}(y) = \max_i(\min(w_i, \mu_{C_i}(y)))$.</p>
+              <p><strong>4. Defuzzification:</strong> Calculates continuous Academic Risk Score $z^* = \frac{\int y \cdot \mu_{out}(y) dy}{\int \mu_{out}(y) dy}$.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title mb-4">Domain-Expert Interpretable Rule Base (30 Rules)</h3>
+          <div style="max-height: 400px; overflow-y: auto;">
+            <table class="custom-table">
+              <thead>
+                <tr><th>Rule</th><th>Rule Condition &amp; Consequent Description</th><th>Output Risk Class</th></tr>
+              </thead>
+              <tbody id="fuzzyRulesContainer">
+                <tr><td colspan="3" class="text-slate-500">Loading fuzzy rule base...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+
+
+      <!-- ==================================================
+           10. PROFILE TAB PANE
+           ================================================== -->
+      <section id="tab-profile" class="tab-pane">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Student Profile Details</h3>
+            <div>
+              <button id="editProfileBtn" class="btn btn-primary" style="padding:0.4rem 0.9rem; font-size:0.85rem;">
+                ✏️ Edit Profile
+              </button>
+            </div>
+          </div>
+
+          <form id="profileForm">
+            <div class="grid-2" style="gap:1.25rem;">
+              <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="profName" disabled class="bg-slate-50">
+              </div>
+              <div class="form-group">
+                <label>Academic Email (Read-only)</label>
+                <input type="email" id="profEmail" disabled class="bg-slate-100 cursor-not-allowed">
+              </div>
+              <div class="form-group">
+                <label>Student ID</label>
+                <input type="text" id="profStudentId" disabled class="bg-slate-50">
+              </div>
+              <div class="form-group">
+                <label>Age</label>
+                <input type="text" id="profAge" disabled class="bg-slate-50">
+              </div>
+              <div class="form-group">
+                <label>College / Institution</label>
+                <input type="text" id="profCollege" disabled class="bg-slate-50">
+              </div>
+              <div class="form-group">
+                <label>Department</label>
+                <input type="text" id="profDepartment" disabled class="bg-slate-50">
+              </div>
+              <div class="form-group">
+                <label>Degree Course</label>
+                <input type="text" id="profCourse" disabled class="bg-slate-50">
+              </div>
+              <div class="form-group">
+                <label>Academic Year / Semester</label>
+                <input type="text" id="profAcademicYear" disabled class="bg-slate-50">
+              </div>
+              <div class="form-group">
+                <label>Phone Number</label>
+                <input type="text" id="profPhone" disabled class="bg-slate-50">
+              </div>
+              <div class="form-group">
+                <label>City / Campus Location</label>
+                <input type="text" id="profCity" disabled class="bg-slate-50">
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-top:1rem;">
+              <label>Academic Bio / Notes</label>
+              <textarea id="profBio" rows="3" disabled class="bg-slate-50" style="width:100%; padding:0.6rem; border-radius:var(--radius-sm); border:1px solid var(--border-color);"></textarea>
+            </div>
+
+            <div id="profileActionGroup" class="hidden flex gap-3 mt-4" style="display:none;">
+              <button type="submit" id="saveProfileBtn" class="btn btn-primary">
+                💾 Save Profile Changes
+              </button>
+              <button type="button" id="cancelProfileBtn" class="btn btn-secondary">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- JS Modules -->
+  <script src="js/auth.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/risk.js"></script>
+  <script src="js/simulator.js"></script>
+  <script src="js/profile.js"></script>
+</body>
+</html>

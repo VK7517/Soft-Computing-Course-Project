@@ -1,0 +1,188 @@
+/* ==================================================
+   GLOBAL CSS DESIGN SYSTEM & TOKENS
+   Deep Navy / Academic Blue Identity
+   ================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap');
+
+:root {
+  /* Color Palette */
+  --primary-900: #0F172A;
+  --primary-800: #1E3A8A;
+  --primary-700: #1D4ED8;
+  --primary-600: #2563EB;
+  --primary-500: #3B82F6;
+  --primary-100: #EFF6FF;
+  --primary-50:  #F8FAFC;
+
+  /* Risk Category Colors */
+  --risk-very-low:  #10B981;
+  --risk-low:       #3B82F6;
+  --risk-moderate:  #F59E0B;
+  --risk-high:      #EF4444;
+  --risk-very-high: #991B1B;
+
+  /* Neutral Surface Colors */
+  --bg-main: #F1F5F9;
+  --surface-card: #FFFFFF;
+  --surface-hover: #F8FAFC;
+  --border-color: #E2E8F0;
+  --border-hover: #CBD5E1;
+
+  /* Typography */
+  --text-main: #0F172A;
+  --text-muted: #64748B;
+  --text-light: #94A3B8;
+
+  /* Shadows & Elevation */
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08), 0 2px 4px rgba(15, 23, 42, 0.04);
+  --shadow-lg: 0 10px 25px -5px rgba(15, 23, 42, 0.12), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+  --shadow-glow: 0 0 20px rgba(37, 99, 235, 0.2);
+
+  /* Radius & Transitions */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-full: 9999px;
+  --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset & Box Sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  font-weight: 700;
+  color: var(--primary-900);
+  line-height: 1.25;
+}
+
+a {
+  color: var(--primary-600);
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+a:hover {
+  color: var(--primary-800);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-800), var(--primary-600));
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #1E3A8A, #1D4ED8);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+}
+
+.btn-secondary {
+  background-color: #FFFFFF;
+  color: var(--primary-800);
+  border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+  background-color: var(--primary-100);
+  border-color: var(--primary-500);
+}
+
+.btn-danger {
+  background-color: #EF4444;
+  color: #FFFFFF;
+}
+
+.btn-danger:hover {
+  background-color: #DC2626;
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badge-very-low { background-color: #D1FAE5; color: #065F46; }
+.badge-low { background-color: #DBEAFE; color: #1E40AF; }
+.badge-moderate { background-color: #FEF3C7; color: #92400E; }
+.badge-high { background-color: #FEE2E2; color: #991B1B; }
+.badge-very-high { background-color: #FCA5A5; color: #7F1D1D; }
+
+/* Global Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Toast Alerts */
+.toast-container {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.toast {
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-sm);
+  background: #FFFFFF;
+  box-shadow: var(--shadow-lg);
+  border-left: 4px solid var(--primary-600);
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.toast.toast-error { border-left-color: #EF4444; }
+.toast.toast-success { border-left-color: #10B981; }
